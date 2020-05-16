@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <head>
+    <title>My Leaflet.js Map</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+    <style>
+      html,
+      body,
+      #map {
+        height: 100%;
+      }
+    </style>
+    <script type="text/javascript">
+      function init() {
+        var osmLink = "<a href='http://www.openstreetmap.org'>OpenStreetMap</a > "
+        var map = L.map('map').setView([37.775, -122.420], 18);
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: 'Map data &copy; ' + osmLink,
+          maxZoom: 18,
+        }).addTo(map);
+        map.on("click", function (e) {
+          // e.preventDefault();
+          var lat = e.latlng.lat;
+          var lng = e.latlng.lng;
+          alert("You clicked the map at " + lat + "," + lng);
+          var f = map.getCenter()
+          var lat2 = f.lat;
+          var lng2 = f.lng;
+          alert("Map is currently centered at " + lat2 + "," + lng2);
+        })
+
+
+      }
+    </script>
+
+  </head>
+
+<body onload=init()>
+
+  <div id="map"></div>
+</body>
+
+</html>
